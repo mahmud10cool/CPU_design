@@ -143,6 +143,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
+    <comp lib="7" loc="(250,260)" name="CPU_DECODER_3x8"/>
   </circuit>
   <circuit name="CPU_MEM_1">
     <a name="circuit" val="CPU_MEM_1"/>
@@ -493,5 +494,99 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
     </comp>
     <comp loc="(290,300)" name="CPU_MEM_8"/>
+  </circuit>
+  <circuit name="CPU_DECODER_2X4">
+    <a name="circuit" val="CPU_DECODER_2X4"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <wire from="(160,200)" to="(160,330)"/>
+    <wire from="(160,330)" to="(350,330)"/>
+    <wire from="(160,450)" to="(350,450)"/>
+    <wire from="(260,200)" to="(260,270)"/>
+    <wire from="(160,130)" to="(160,200)"/>
+    <wire from="(210,200)" to="(260,200)"/>
+    <wire from="(260,110)" to="(260,200)"/>
+    <wire from="(220,290)" to="(220,510)"/>
+    <wire from="(400,250)" to="(490,250)"/>
+    <wire from="(400,310)" to="(490,310)"/>
+    <wire from="(400,370)" to="(490,370)"/>
+    <wire from="(400,430)" to="(490,430)"/>
+    <wire from="(260,390)" to="(350,390)"/>
+    <wire from="(260,270)" to="(350,270)"/>
+    <wire from="(90,410)" to="(90,510)"/>
+    <wire from="(90,130)" to="(90,170)"/>
+    <wire from="(90,170)" to="(110,170)"/>
+    <wire from="(160,200)" to="(180,200)"/>
+    <wire from="(140,170)" to="(220,170)"/>
+    <wire from="(90,170)" to="(90,350)"/>
+    <wire from="(160,330)" to="(160,450)"/>
+    <wire from="(260,390)" to="(260,510)"/>
+    <wire from="(260,270)" to="(260,390)"/>
+    <wire from="(90,350)" to="(90,410)"/>
+    <wire from="(220,230)" to="(350,230)"/>
+    <wire from="(220,290)" to="(350,290)"/>
+    <wire from="(90,350)" to="(350,350)"/>
+    <wire from="(90,410)" to="(350,410)"/>
+    <wire from="(160,450)" to="(160,510)"/>
+    <wire from="(220,110)" to="(220,170)"/>
+    <wire from="(220,170)" to="(220,230)"/>
+    <wire from="(220,230)" to="(220,290)"/>
+    <comp lib="1" loc="(400,310)" name="AND Gate">
+      <a name="inputs" val="2"/>
+      <a name="label" val="01"/>
+    </comp>
+    <comp lib="1" loc="(400,370)" name="AND Gate">
+      <a name="inputs" val="2"/>
+      <a name="label" val="10"/>
+    </comp>
+    <comp lib="1" loc="(140,170)" name="NOT Gate"/>
+    <comp lib="0" loc="(490,430)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(490,370)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(400,430)" name="AND Gate">
+      <a name="inputs" val="2"/>
+      <a name="label" val="11"/>
+    </comp>
+    <comp lib="0" loc="(90,130)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="A"/>
+      <a name="labelloc" val="north"/>
+    </comp>
+    <comp lib="6" loc="(258,97)" name="Text">
+      <a name="text" val="nB"/>
+    </comp>
+    <comp lib="6" loc="(220,98)" name="Text">
+      <a name="text" val="nA"/>
+    </comp>
+    <comp lib="0" loc="(490,250)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(400,250)" name="AND Gate">
+      <a name="inputs" val="2"/>
+      <a name="label" val="00"/>
+    </comp>
+    <comp lib="0" loc="(490,310)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(160,130)" name="Pin">
+      <a name="facing" val="south"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="B"/>
+      <a name="labelloc" val="north"/>
+    </comp>
+    <comp lib="1" loc="(210,200)" name="NOT Gate"/>
   </circuit>
 </project>
