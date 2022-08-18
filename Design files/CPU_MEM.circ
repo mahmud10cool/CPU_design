@@ -1,9 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project source="2.7.1" version="1.0">
 This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
-<lib desc="#Wiring" name="0"/>
-  <lib desc="#Gates" name="1"/>
-  <lib desc="#Plexers" name="2"/>
+<lib desc="#Wiring" name="0">
+    <tool name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+    </tool>
+    <tool name="Pin">
+      <a name="facing" val="west"/>
+    </tool>
+    <tool name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="CLKE"/>
+    </tool>
+    <tool name="Pull Resistor">
+      <a name="facing" val="north"/>
+    </tool>
+    <tool name="Clock">
+      <a name="label" val="CLK"/>
+    </tool>
+    <tool name="Constant">
+      <a name="facing" val="north"/>
+    </tool>
+    <tool name="Transistor">
+      <a name="type" val="n"/>
+      <a name="facing" val="south"/>
+    </tool>
+  </lib>
+  <lib desc="#Gates" name="1">
+    <tool name="NOT Gate">
+      <a name="facing" val="south"/>
+      <a name="size" val="20"/>
+    </tool>
+    <tool name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </tool>
+    <tool name="OR Gate">
+      <a name="facing" val="west"/>
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </tool>
+    <tool name="NAND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </tool>
+    <tool name="Controlled Buffer">
+      <a name="facing" val="south"/>
+      <a name="width" val="8"/>
+    </tool>
+  </lib>
+  <lib desc="#Plexers" name="2">
+    <tool name="Multiplexer">
+      <a name="select" val="2"/>
+      <a name="width" val="8"/>
+    </tool>
+  </lib>
   <lib desc="#Arithmetic" name="3"/>
   <lib desc="#Memory" name="4">
     <tool name="ROM">
@@ -12,13 +65,44 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
 </a>
     </tool>
   </lib>
-  <lib desc="#I/O" name="5"/>
+  <lib desc="#I/O" name="5">
+    <tool name="Button">
+      <a name="facing" val="west"/>
+      <a name="label" val="RESET"/>
+    </tool>
+    <tool name="LED">
+      <a name="facing" val="east"/>
+    </tool>
+    <tool name="TTY">
+      <a name="bg" val="#00000000"/>
+    </tool>
+  </lib>
   <lib desc="#Base" name="6">
     <tool name="Text Tool">
       <a name="text" val=""/>
       <a name="font" val="SansSerif plain 12"/>
       <a name="halign" val="center"/>
       <a name="valign" val="base"/>
+    </tool>
+    <tool name="Text">
+      <a name="text" val="kkkk"/>
+    </tool>
+  </lib>
+  <lib desc="file#C:\Users\Mahmud Suhaimi\Desktop\CPU_Design\CPU_DESIGN\CPU_DESIGN.circ" name="7">
+    <tool name="CPU_ADDER_8">
+      <a name="facing" val="north"/>
+    </tool>
+    <tool name="CPU_ACCUMULATOR">
+      <a name="facing" val="south"/>
+    </tool>
+    <tool name="CPU_R">
+      <a name="facing" val="north"/>
+    </tool>
+    <tool name="CPU_TMP">
+      <a name="facing" val="south"/>
+    </tool>
+    <tool name="CPU_STEPPER">
+      <a name="facing" val="south"/>
     </tool>
   </lib>
   <main name="main"/>
@@ -100,13 +184,16 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(550,320)" to="(550,400)"/>
     <wire from="(330,260)" to="(330,320)"/>
     <wire from="(340,350)" to="(340,380)"/>
+    <comp lib="6" loc="(321,523)" name="Text">
+      <a name="text" val="1 bit memory cell"/>
+      <a name="font" val="SansSerif plain 24"/>
+    </comp>
     <comp lib="0" loc="(60,310)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="E"/>
     </comp>
-    <comp lib="6" loc="(321,523)" name="Text">
-      <a name="text" val="1 bit memory cell"/>
-      <a name="font" val="SansSerif plain 24"/>
+    <comp lib="1" loc="(230,220)" name="NAND Gate">
+      <a name="inputs" val="2"/>
     </comp>
     <comp lib="1" loc="(460,400)" name="NAND Gate">
       <a name="inputs" val="2"/>
@@ -114,9 +201,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(450,240)" name="NAND Gate">
       <a name="inputs" val="2"/>
     </comp>
-    <comp lib="0" loc="(50,200)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="S"/>
+    <comp lib="1" loc="(320,420)" name="NAND Gate">
+      <a name="inputs" val="2"/>
     </comp>
     <comp lib="0" loc="(610,240)" name="Pin">
       <a name="facing" val="west"/>
@@ -124,11 +210,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="Q"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="1" loc="(230,220)" name="NAND Gate">
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="1" loc="(320,420)" name="NAND Gate">
-      <a name="inputs" val="2"/>
+    <comp lib="0" loc="(50,200)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="S"/>
     </comp>
   </circuit>
   <circuit name="CPU_MEM_8">
@@ -139,11 +223,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <appear>
       <path d="M190,88 Q194,98 198,88" fill="none" stroke="#808080" stroke-width="2"/>
       <rect fill="none" height="63" stroke="#000000" width="111" x="140" y="87"/>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="152" y="114">S</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="152" y="133">E</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="152" y="134">S</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="237" y="125">Q</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="193" y="115">CPU</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="196" y="130">MEM_8</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="151" y="113">I</text>
       <circ-port height="8" pin="100,30" width="8" x="136" y="106"/>
       <circ-port height="10" pin="550,40" width="10" x="245" y="115"/>
       <circ-port height="8" pin="360,820" width="8" x="136" y="126"/>
@@ -202,18 +286,21 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(200,90)" to="(330,90)"/>
     <wire from="(420,290)" to="(620,290)"/>
     <wire from="(550,40)" to="(560,40)"/>
-    <comp loc="(420,740)" name="CPU_MEM_1"/>
-    <comp lib="0" loc="(550,40)" name="Pin">
-      <a name="output" val="true"/>
-      <a name="width" val="8"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp loc="(420,110)" name="CPU_MEM_1"/>
+    <comp loc="(420,560)" name="CPU_MEM_1"/>
+    <comp loc="(420,380)" name="CPU_MEM_1"/>
+    <comp loc="(420,290)" name="CPU_MEM_1"/>
     <comp lib="0" loc="(560,50)" name="Splitter">
       <a name="facing" val="south"/>
       <a name="fanout" val="8"/>
       <a name="incoming" val="8"/>
     </comp>
+    <comp loc="(420,200)" name="CPU_MEM_1"/>
+    <comp lib="0" loc="(550,40)" name="Pin">
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp loc="(420,740)" name="CPU_MEM_1"/>
     <comp lib="0" loc="(120,40)" name="Splitter">
       <a name="facing" val="south"/>
       <a name="fanout" val="8"/>
@@ -223,15 +310,188 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="tristate" val="false"/>
     </comp>
+    <comp loc="(420,110)" name="CPU_MEM_1"/>
     <comp loc="(420,650)" name="CPU_MEM_1"/>
-    <comp loc="(420,560)" name="CPU_MEM_1"/>
-    <comp loc="(420,200)" name="CPU_MEM_1"/>
-    <comp loc="(420,380)" name="CPU_MEM_1"/>
-    <comp loc="(420,470)" name="CPU_MEM_1"/>
-    <comp loc="(420,290)" name="CPU_MEM_1"/>
     <comp lib="0" loc="(100,30)" name="Pin">
       <a name="width" val="8"/>
       <a name="tristate" val="false"/>
     </comp>
+    <comp loc="(420,470)" name="CPU_MEM_1"/>
+  </circuit>
+  <circuit name="CPU_ENABLE">
+    <a name="circuit" val="CPU_ENABLE"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <appear>
+      <path d="M155,76 Q159,86 163,76" fill="none" stroke="#808080" stroke-width="2"/>
+      <rect fill="none" height="68" stroke="#000000" width="81" x="120" y="75"/>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="159" y="114">CPU</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="162" y="131">ENABLE</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="131" y="124">E</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="129" y="104">I</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="187" y="113">O</text>
+      <circ-port height="10" pin="520,30" width="10" x="195" y="105"/>
+      <circ-port height="8" pin="200,40" width="8" x="116" y="96"/>
+      <circ-port height="8" pin="260,640" width="8" x="116" y="116"/>
+      <circ-anchor facing="east" height="6" width="6" x="197" y="107"/>
+    </appear>
+    <wire from="(110,530)" to="(300,530)"/>
+    <wire from="(260,570)" to="(260,640)"/>
+    <wire from="(100,60)" to="(100,70)"/>
+    <wire from="(350,430)" to="(470,430)"/>
+    <wire from="(120,470)" to="(300,470)"/>
+    <wire from="(350,130)" to="(520,130)"/>
+    <wire from="(130,410)" to="(300,410)"/>
+    <wire from="(440,50)" to="(550,50)"/>
+    <wire from="(350,550)" to="(450,550)"/>
+    <wire from="(260,330)" to="(300,330)"/>
+    <wire from="(260,150)" to="(300,150)"/>
+    <wire from="(260,210)" to="(300,210)"/>
+    <wire from="(260,270)" to="(300,270)"/>
+    <wire from="(260,390)" to="(300,390)"/>
+    <wire from="(260,450)" to="(300,450)"/>
+    <wire from="(260,510)" to="(300,510)"/>
+    <wire from="(260,570)" to="(300,570)"/>
+    <wire from="(550,30)" to="(550,50)"/>
+    <wire from="(140,350)" to="(300,350)"/>
+    <wire from="(150,290)" to="(300,290)"/>
+    <wire from="(350,250)" to="(500,250)"/>
+    <wire from="(200,40)" to="(210,40)"/>
+    <wire from="(160,230)" to="(300,230)"/>
+    <wire from="(110,90)" to="(110,530)"/>
+    <wire from="(350,370)" to="(480,370)"/>
+    <wire from="(170,170)" to="(300,170)"/>
+    <wire from="(120,90)" to="(120,470)"/>
+    <wire from="(130,90)" to="(130,410)"/>
+    <wire from="(140,90)" to="(140,350)"/>
+    <wire from="(180,110)" to="(300,110)"/>
+    <wire from="(150,90)" to="(150,290)"/>
+    <wire from="(450,90)" to="(450,550)"/>
+    <wire from="(160,90)" to="(160,230)"/>
+    <wire from="(170,90)" to="(170,170)"/>
+    <wire from="(440,50)" to="(440,70)"/>
+    <wire from="(470,90)" to="(470,430)"/>
+    <wire from="(100,60)" to="(210,60)"/>
+    <wire from="(180,90)" to="(180,110)"/>
+    <wire from="(350,490)" to="(460,490)"/>
+    <wire from="(460,90)" to="(460,490)"/>
+    <wire from="(210,40)" to="(210,60)"/>
+    <wire from="(490,90)" to="(490,310)"/>
+    <wire from="(480,90)" to="(480,370)"/>
+    <wire from="(510,90)" to="(510,190)"/>
+    <wire from="(350,190)" to="(510,190)"/>
+    <wire from="(520,30)" to="(550,30)"/>
+    <wire from="(500,90)" to="(500,250)"/>
+    <wire from="(520,90)" to="(520,130)"/>
+    <wire from="(350,310)" to="(490,310)"/>
+    <wire from="(260,150)" to="(260,210)"/>
+    <wire from="(260,210)" to="(260,270)"/>
+    <wire from="(260,270)" to="(260,330)"/>
+    <wire from="(260,330)" to="(260,390)"/>
+    <wire from="(260,390)" to="(260,450)"/>
+    <wire from="(260,450)" to="(260,510)"/>
+    <wire from="(260,510)" to="(260,570)"/>
+    <comp lib="1" loc="(350,250)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="1" loc="(350,550)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="1" loc="(350,310)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(440,70)" name="Splitter">
+      <a name="facing" val="south"/>
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+    </comp>
+    <comp lib="0" loc="(520,30)" name="Pin">
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(350,370)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Splitter">
+      <a name="facing" val="south"/>
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+    </comp>
+    <comp lib="1" loc="(350,430)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(200,40)" name="Pin">
+      <a name="width" val="8"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="1" loc="(350,490)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="1" loc="(350,130)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="1" loc="(350,190)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(260,640)" name="Pin">
+      <a name="facing" val="north"/>
+      <a name="tristate" val="false"/>
+    </comp>
+  </circuit>
+  <circuit name="CPU_REG_8">
+    <a name="circuit" val="CPU_REG_8"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <appear>
+      <path d="M145,126 Q149,136 153,126" fill="none" stroke="#808080" stroke-width="2"/>
+      <rect fill="none" height="68" stroke="#000000" width="80" x="110" y="125"/>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="150" y="160">CPU</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="153" y="176">REG_8</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="120" y="145">I</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="122" y="164">S</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="121" y="184">E</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="178" y="164">O</text>
+      <circ-port height="8" pin="110,290" width="8" x="106" y="136"/>
+      <circ-port height="8" pin="140,430" width="8" x="106" y="156"/>
+      <circ-port height="8" pin="330,430" width="8" x="106" y="176"/>
+      <circ-port height="10" pin="530,310" width="10" x="185" y="155"/>
+      <circ-anchor facing="east" height="6" width="6" x="187" y="157"/>
+    </appear>
+    <wire from="(290,300)" to="(370,300)"/>
+    <wire from="(450,310)" to="(530,310)"/>
+    <wire from="(350,320)" to="(370,320)"/>
+    <wire from="(330,430)" to="(350,430)"/>
+    <wire from="(160,310)" to="(160,430)"/>
+    <wire from="(350,320)" to="(350,430)"/>
+    <wire from="(110,290)" to="(180,290)"/>
+    <wire from="(160,310)" to="(180,310)"/>
+    <wire from="(140,430)" to="(160,430)"/>
+    <comp lib="0" loc="(530,310)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(131,455)" name="Text">
+      <a name="text" val="S"/>
+    </comp>
+    <comp lib="0" loc="(140,430)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="6" loc="(321,455)" name="Text">
+      <a name="text" val="E"/>
+    </comp>
+    <comp loc="(450,310)" name="CPU_ENABLE"/>
+    <comp lib="0" loc="(330,430)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(110,290)" name="Pin">
+      <a name="width" val="8"/>
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp loc="(290,300)" name="CPU_MEM_8"/>
   </circuit>
 </project>
